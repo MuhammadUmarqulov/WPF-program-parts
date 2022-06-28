@@ -1,0 +1,156 @@
+﻿<Window x:Class="SrmEdu.WPF.Pages.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SrmEdu.WPF.Pages"
+      xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d"
+      Background="Transparent"
+      ResizeMode="NoResize"
+      WindowStyle="None"
+      AllowsTransparency="True"
+      WindowStartupLocation="CenterScreen"
+      Height="800" Width="1200"
+      Title="MainPage" >
+
+    <Window.Resources>
+        <Storyboard x:Key="MenuClose">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)"
+                                           Storyboard.TargetName="NavBar">
+                <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="85"/>
+
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        
+        <Storyboard x:Key="MenuOpen">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)"
+                                           Storyboard.TargetName="NavBar">
+                <EasingDoubleKeyFrame KeyTime="0" Value="85"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200"/>
+
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+    </Window.Resources>
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="MenuCloser" >
+            <BeginStoryboard Storyboard="{StaticResource MenuOpen}" />
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ManuOpener" >
+            <BeginStoryboard Storyboard="{StaticResource MenuClose}" />
+        </EventTrigger>
+    </Window.Triggers>
+    
+
+    <Border MouseDown="BorderDragMouseDown" CornerRadius="15"  Background="#2E3449" BorderThickness="0">
+        <Border CornerRadius="30" BorderThickness="0">
+            <Grid>
+                
+                <!-- Navigation bar side definations -->
+                <Border x:Name="NavBar"  CornerRadius="15,0,0,15" Width="85" Background="#191E38" HorizontalAlignment="Left">
+
+                    
+                    <StackPanel  >
+                        
+                        <!-- Menu bar open or closer button definitions -->
+                        <Grid>
+
+                            <Button Name="ManuOpener" Visibility="Collapsed" md:ButtonAssist.CornerRadius="50" 
+                                    Background="#191E38" BorderThickness="0" 
+                                    Height="60" HorizontalAlignment="Right" Margin="10"
+                                    Click="ManuOpener_Click">
+                                <md:PackIcon Kind="ArrowLeft" Height="30" Width="30" Foreground="#0B7EEF"/>
+                            </Button>
+
+                            <Button Name="MenuCloser"  md:ButtonAssist.CornerRadius="50" 
+                                    Background="#191E38" BorderThickness="0" 
+                                    Height="60" HorizontalAlignment="Right" Margin="10"
+                                    Click="MenuCloser_Click">
+                                <md:PackIcon Kind="Menu" Height="30" Width="30" Foreground="#0B7EEF"/>
+                            </Button>
+                        
+                        </Grid>
+                        
+                        <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
+
+                            <!-- Account button ui -->
+                            <ListViewItem Height="60" Foreground="#0B7EEF" >
+
+                                <StackPanel Margin="15,0" Orientation="Horizontal" Width="206">
+                                    <md:PackIcon Kind="Account" Height="35" Width="35" VerticalAlignment="Center"/>
+                                    <TextBlock Text="Account" VerticalAlignment="Center" Margin="30 10" FontSize="18"/>
+                                </StackPanel>
+
+                            </ListViewItem>
+
+                            <!-- Dashborard button ui -->
+                            <ListViewItem Height="60" Foreground="#0B7EEF" >
+
+                                <StackPanel Margin="15,0" Orientation="Horizontal" Width="206">
+                                    <md:PackIcon Kind="Home" Height="35" Width="35" VerticalAlignment="Center"/>
+                                    <TextBlock  Text="Dashboard" VerticalAlignment="Center" Margin="30 10" FontSize="18"/>
+                                </StackPanel>
+
+                            </ListViewItem>
+
+                            <!-- Analistics button ui -->
+                            <ListViewItem Height="60" Foreground="#0B7EEF" >
+
+                                <StackPanel Margin="15,0" Orientation="Horizontal" Width="206">
+                                    <md:PackIcon Kind="Analytics" Height="35" Width="35" VerticalAlignment="Center" RenderTransformOrigin="0.951,0.546"/>
+                                    <TextBlock  Text="Analistics" VerticalAlignment="Center" Margin="30 10" FontSize="18"/>
+                                </StackPanel>
+
+                            </ListViewItem>
+
+                            <!-- Calendar button ui -->
+                            <ListViewItem Height="60" Foreground="#0B7EEF" >
+
+                                <StackPanel Margin="15,0" Orientation="Horizontal" Width="206">
+                                    <md:PackIcon Kind="Calendar" Height="35" Width="35" VerticalAlignment="Center"/>
+                                    <TextBlock  Text="Calendar" VerticalAlignment="Center" Margin="30 10" FontSize="18"/>
+                                </StackPanel>
+
+                            </ListViewItem>
+
+                            <!-- Phone button ui -->
+                            <ListViewItem Height="60" Foreground="#0B7EEF" Margin="0,0,0,0">
+
+                                <StackPanel Margin="15,0" Orientation="Horizontal" Width="206" >
+                                    <md:PackIcon Kind="Contact" Height="35" Width="35" VerticalAlignment="Center"/>
+                                    <TextBlock  Text="Contact Us" VerticalAlignment="Center" Margin="30 10" FontSize="18"/>
+                                </StackPanel>
+
+                            </ListViewItem>
+
+                            <ListViewItem Height="60" Foreground="#0B7EEF">
+
+                                <StackPanel Margin="15,0" Orientation="Horizontal" Width="206" >
+                                    <md:PackIcon Kind="Settings" Height="35" Width="35" VerticalAlignment="Center"/>
+                                    <TextBlock  Text="Settings" VerticalAlignment="Center" Margin="30 10" FontSize="18"/>
+                                </StackPanel>
+
+                            </ListViewItem>
+
+                        </ListView>
+                    
+                    </StackPanel>
+
+                </Border>
+
+                <Border>
+
+                    <Grid>
+                        <Image Height="25" MouseDown="Exit_MouseDown"  Width="25" 
+                               Source="D:\WPF\SrmEdu.WPF\SrmEdu.WPF\Images\del.png" Margin="1149,25,26,750" />
+
+                    </Grid>
+                    
+                </Border>
+            </Grid>
+        </Border>
+    </Border>
+</Window>
